@@ -14,7 +14,7 @@
     <br>
     <label for="content">내용 : </label>
     <textarea name="content" id="content"></textarea>
-    <button type="submit">작성</button>
+    <button type="submit">작성하기</button>
     </form>
 </body>
 </html>
