@@ -1,10 +1,17 @@
 <?php
-
+/******************************
+ *  프로젝트명 : laravel_board
+ *  디렉토리   : controllers
+ *  파일명     : BoardsController.php
+ *  이력       : v001 0526 JA.KIM new
+ *               v002 0530 JA.KIM 유효성 체크 추가
+ *****************************/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\boards;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class BoardsController extends Controller
 {
@@ -37,6 +44,12 @@ class BoardsController extends Controller
      */
     public function store(Request $req)
     {
+        // v002 add atart
+        $req->validate([
+            'title'=>'required|between:3,30'
+            ,'content'=>'required|max:1000'
+        ]);
+        // v002 add end
         $boards = new Boards([
             'title' => $req->input('title')
             ,'content' => $req->input('content')
@@ -81,18 +94,38 @@ class BoardsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // v002 add atart
+        $arr = ['id'=>$id];
+        // $request->merge($arr);
+        $request->request->add($arr);
 
-        // $boards =  
+        $request->validate([
+            'id' => 'required|integer'
+            ,'title'=>'required|between:3,30'
+            ,'content'=>'required|max:1000'
+        ]);
+        // v002 add end
+        
+        $validator = Validator::make($request->only('id','title','content'),[
+            'id' => 'required|integer'
+            ,'title'=>'required|between:3,30'
+            ,'content'=>'required|max:1000'
+        ]);
+
+        if($validator->fails()) { 
+            return redirect()->back()->withErrors($validator)->withInput();
+        };
+
         DB::table('boards')->where('id',$id)->update([
             'title' => request('title'),
             'content' => request('content'),
         ]);
 
+
         $result = Boards::find($id);
         $result->title = $request->title;
         $result->content = $request->content;
         $result->save();
-
         
         return redirect('/boards/'.$id)->with('data', Boards::findOrFail($id));
         // return view('detail')->with('data', Boards::findOrFail($id));

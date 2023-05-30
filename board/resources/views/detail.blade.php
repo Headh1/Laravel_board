@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout.layout')
+
+@section('title', 'List')
+
+@section('contents')
     <div>
     글번호 : {{$data->id}}
     <br>
@@ -29,5 +25,4 @@
         @method('DELETE')
         <button type="submit" onclick="alert('삭제?')">delete</button>
     </form>
-</body>
-</html>
+@endsection
