@@ -9,6 +9,7 @@
         @endforeach
     @endif --}}
     @include('layout.valerror')
+    <main>
     <form action="{{route('boards.store')}}" method="post">
     @csrf
     <label for="title">제목 : </label>
@@ -18,4 +19,5 @@
     <textarea name="content" id="content" >{{old('content')}}</textarea>
     <button type="submit">작성하기</button>
     </form>
+    </main>
 @endsection

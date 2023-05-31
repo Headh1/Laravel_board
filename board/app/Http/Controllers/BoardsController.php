@@ -22,6 +22,9 @@ class BoardsController extends Controller
      */
     public function index()
     {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         $result = Boards::select(['id','title','hits','created_at','updated_at'])->orderBy('hits','desc')->get();
         return view('list')->with('data',$result);
     }
@@ -106,20 +109,20 @@ class BoardsController extends Controller
         ]);
         // v002 add end
         
-        $validator = Validator::make($request->only('id','title','content'),[
-            'id' => 'required|integer'
-            ,'title'=>'required|between:3,30'
-            ,'content'=>'required|max:1000'
-        ]);
+        // $validator = Validator::make($request->only('id','title','content'),[
+        //     'id' => 'required|integer'
+        //     ,'title'=>'required|between:3,30'
+        //     ,'content'=>'required|max:1000'
+        // ]);
 
-        if($validator->fails()) { 
-            return redirect()->back()->withErrors($validator)->withInput();
-        };
+        // if($validator->fails()) { 
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // };
 
-        DB::table('boards')->where('id',$id)->update([
-            'title' => request('title'),
-            'content' => request('content'),
-        ]);
+        // DB::table('boards')->where('id',$id)->update([
+        //     'title' => request('title'),
+        //     'content' => request('content'),
+        // ]);
 
 
         $result = Boards::find($id);
@@ -127,7 +130,8 @@ class BoardsController extends Controller
         $result->content = $request->content;
         $result->save();
         
-        return redirect('/boards/'.$id)->with('data', Boards::findOrFail($id));
+        return redirect()->route('boards.show', ['board' => $id]);
+        // return redirect('/boards/'.$id)->with('data', Boards::findOrFail($id));
         // return view('detail')->with('data', Boards::findOrFail($id));
 
     }

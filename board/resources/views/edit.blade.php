@@ -10,6 +10,7 @@
         @endforeach
     @endif --}}
 @include('layout.valerror')
+<main>
     <form action="{{route('boards.update',['board' => $data->id])}}" method="post">
     @csrf
     @method('PUT')
@@ -21,4 +22,5 @@
     <button type="submit">수정</button>
     <button type="button" onclick="location.href='{{route('boards.show',['board' => $data->id])}}'">취소</button>
     </form>
+    </main>
 @endsection

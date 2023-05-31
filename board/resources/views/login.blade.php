@@ -4,7 +4,8 @@
 
 @section('contents')
 @include('layout.valerror')
-<div>{{isset($success) ? $success : ""}}</div>
+<main>
+<div>{{session()->has('success') ? session('success') : ""}}</div>
     <form action="{{route('users.login.post')}}" method="post">
     @csrf
     <label for="email"> Email : </label>
@@ -15,4 +16,5 @@
     <button type="submit">Login</button>
     <button type="button" onclick="location.href = '{{route('users.sign')}}'">Sign</button>
     </form>
+    </main>
 @endsection

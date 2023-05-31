@@ -4,6 +4,7 @@
 
 @section('contents')
     @include('layout.valerror')
+    <main>
         <form action="{{route('users.sign.post')}}" method="post">
             @csrf
             <label for="name"> Name : </label>
@@ -15,10 +16,11 @@
             <label for="password"> Password : </label>
             <input type="password" name="password" id="password">
             <br>
-            <label for="passck"> Password : </label>
+            <label for="passck"> Password ck: </label>
             <input type="password" name="passck" id="passck">
             <br>
             <button type="submit">Sign</button>
             <button type="button" onclick="location.href = '{{route('users.login')}}'">cancel</button>
         </form>
+        </main>
 @endsection

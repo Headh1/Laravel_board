@@ -2,9 +2,31 @@
     text-align: center;
 }
 h1{
-    font-size: 50px
+    font-size: 50px;
+    width:200px;
+    margin: 0 auto;
 }
 
 body{
-    background-image: url('land.jpg');
+    background-image:url('back.PNG');
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main{
+    height: 500px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+table{
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    width:100px;
 }

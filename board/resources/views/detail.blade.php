@@ -3,6 +3,7 @@
 @section('title', 'List')
 
 @section('contents')
+<main>
     <div>
     글번호 : {{$data->id}}
     <br>
@@ -25,4 +26,5 @@
         @method('DELETE')
         <button type="submit" onclick="alert('삭제?')">delete</button>
     </form>
+    </main>
 @endsection

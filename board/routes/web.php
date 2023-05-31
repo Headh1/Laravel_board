@@ -32,3 +32,7 @@ Route::get('/users/login',[UserController::class,'login'])->name('users.login');
 Route::post('/users/loginpost',[UserController::class,'loginpost'])->name('users.login.post');
 Route::get('/users/sign',[UserController::class,'sign'])->name('users.sign');
 Route::post('/users/signpost',[UserController::class,'signpost'])->name('users.sign.post');
+Route::get('users/logout',[UserController::class,'logout'])->name('users.logout');
+Route::get('users/withraw',[UserController::class,'withraw'])->name('users.withraw');
+Route::get('/users/myinfo',[UserController::class,'myinfo'])->name('users.myinfo');
+Route::put('users/myinfoput',[UserController::class,'myinfoput'])->name('users.myinfo.put');
