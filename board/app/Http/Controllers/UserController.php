@@ -14,10 +14,22 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     function login() {
+        $arr['key'] = 'test';
+        $arr['kim'] = 'park';
+        Log::emergency('emergency',$arr);
+        Log::alert('alert',$arr);
+        Log::critical('critical',$arr);
+        Log::error('error',$arr);
+        Log::warning('warning',$arr);
+        Log::notice('notice',$arr);
+        Log::info('info',$arr);
+        Log::debug('debug',$arr);
+
         return view('login');
     }
 
